@@ -1,0 +1,8 @@
+{
+  "rfid-limit": "<strong>Little tag motion</strong> can hide a real human action.",
+  "fusion": "<strong>Share the evidence</strong>; keep action and target outputs separate.",
+  "simulator": "<strong>One physical motion</strong> keeps both synthetic modalities consistent.",
+  "adaptation": "<strong>Simulate for coverage</strong>; fine-tune on real RF.",
+  "real-pairs": "<strong>New real pairings</strong> can reuse familiar actions and objects.",
+  "goals": "In this case study, <strong>joint labels improve goal inference</strong>."
+}

@@ -1,0 +1,158 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#002D72"><meta name="description" content="RF-HOI: recognize actions and their target objects with complementary RF sensing and synthetic training."><title>RF-HOI — Johns Hopkins University</title><link rel="icon" href="data:,"><link rel="stylesheet" href="vendor/katex/katex.min.css"><link rel="stylesheet" href="styles.css?v=c58fdc51cf7c"></head><body><main id="stage" aria-label="RF-HOI presentation"><header class="deck-header"><div class="identity"><img class="jhu-header" src="assets/branding/jhu-official-horizontal-white.svg" alt="Johns Hopkins University"><img class="hopwins-header" src="assets/branding/hopwins-horizontal-dark.png" alt="HopWINS Lab"></div><span id="section-label">RF-HOI</span></header>
+<section class="slide cover-slide" id="title" data-kind="cover" data-section="RF-HOI" aria-labelledby="title-heading">
+<div class="cover-layout"><div class="cover-copy"><h1 id="title-heading">RF-<em>HOI</em></h1><p class="cover-description">Recognize Human–Object Interaction<br>with Radio Frequency Signals</p><p class="authors">Lihao Wang, Linlu Gao, Jiacan Yu<br>Yanyu Lin, Yifan Yin, Jianxin Wang<br>Tianmin Shu, Renjie Zhao</p><p class="affiliation">Johns Hopkins University</p><div class="cover-marks"><img class="cover-jhu" src="assets/branding/jhu-official-stacked-white.svg" alt="Johns Hopkins University"><img class="cover-hopwins" src="assets/branding/hopwins-large-dark.svg" alt="HopWINS Lab"></div></div><div class="scene" data-scene="hero" aria-label="One person lifts a tagged book, observed by radar and RFID"></div></div>
+</section>
+<section class="slide body-slide" id="context" data-kind="body" data-section="Motivation" aria-labelledby="context-heading">
+<header class="slide-heading">
+<h2 id="context-heading">Objects make actions more informative</h2></header><div class="slide-body"><div class="scene" data-app="context" aria-label="A sequence of actions gains meaning when its chair and book targets are known"></div></div>
+</section>
+<section class="slide body-slide" id="radar-limit" data-kind="body" data-section="Motivation" aria-labelledby="radar-limit-heading">
+<header class="slide-heading">
+<h2 id="radar-limit-heading">Similar motion can involve different objects</h2></header><div class="slide-body"><div class="scene" data-scene="ambiguity" aria-label="Matched body motion while lifting a tagged book or bottle"></div></div>
+</section>
+<section class="slide body-slide" id="rfid-limit" data-kind="body" data-section="Motivation" aria-labelledby="rfid-limit-heading">
+<header class="slide-heading">
+<h2 id="rfid-limit-heading">Stationary targets can hide actions from RFID</h2></header><div class="slide-body"><div class="scene" data-scene="stationary" aria-label="A moving hand wipes a table while its object tag remains stationary"></div></div>
+<div class="slide-conclusion"><p class="takeaway"><span class="takeaway-label">TAKEAWAY</span><span class="takeaway-text"><strong>Little tag motion</strong> can hide a real human action.</span></p>
+</div>
+</section>
+<section class="slide body-slide" id="cross-evidence" data-kind="body" data-section="Motivation" aria-labelledby="cross-evidence-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow challenge">THE TWO SYSTEM CHALLENGES</p>
+<h2 id="cross-evidence-heading">Two challenges stand between RF and HOI</h2></header><div class="slide-body"><div class="scene" data-challenge="overview" aria-label="Complementarity still leaves heterogeneous evidence and real-world coverage challenges"></div></div>
+</section>
+<section class="slide body-slide" id="radar-features" data-kind="body" data-section="Joint RF Inference" aria-labelledby="radar-features-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow challenge">CHALLENGE 1 — DIFFERENT REPRESENTATIONS</p>
+<h2 id="radar-features-heading">One interaction, two very different streams</h2></header><div class="slide-body"><div class="scene" data-challenge="representations" aria-label="Radar maps and per-tag RFID evidence require different encoders"></div></div>
+</section>
+<section class="slide body-slide" id="rfid-features" data-kind="body" data-section="Joint RF Inference" aria-labelledby="rfid-features-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow design">MOTION CUE — TAG PHASE</p>
+<h2 id="rfid-features-heading">Tag ID identifies; phase differences reveal motion</h2></header><div class="slide-body"><div class="scene" data-challenge="geometry" aria-label="A tag name is static while adjacent-frame range changes create motion-sensitive phase differences"></div></div>
+</section>
+<section class="slide body-slide" id="asynchronous" data-kind="body" data-section="Joint RF Inference" aria-labelledby="asynchronous-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow challenge">CHALLENGE 1 — DIFFERENT CLOCKS</p>
+<h2 id="asynchronous-heading">A radar frame has no fixed RFID partner</h2></header><div class="slide-body"><div class="scene" data-challenge="clocks" aria-label="Trying one-to-one frame pairing fails when RFID read counts vary"></div></div>
+</section>
+<section class="slide body-slide" id="temporal" data-kind="body" data-section="Joint RF Inference" aria-labelledby="temporal-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow design">DESIGN — PREPARE FUSION INPUTS</p>
+<h2 id="temporal-heading">Build compatible summaries before fusion</h2></header><div class="slide-body"><div class="scene" data-challenge="summaries" aria-label="Phase sequences are temporally pooled before separately projected object-name embeddings join and the RFID branch is aligned"></div></div>
+</section>
+<section class="slide body-slide" id="fusion" data-kind="body" data-section="Joint RF Inference" aria-labelledby="fusion-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow design">DESIGN — SHARED EVIDENCE, SEPARATE OUTPUTS</p>
+<h2 id="fusion-heading">Both predictions need both radios</h2></header><div class="slide-body"><div class="scene" data-challenge="shared" aria-label="Shared fused evidence supplies both action and target decisions"></div></div>
+<div class="slide-conclusion"><p class="takeaway"><span class="takeaway-label">TAKEAWAY</span><span class="takeaway-text"><strong>Share the evidence</strong>; keep action and target outputs separate.</span></p>
+</div>
+</section>
+<section class="slide body-slide" id="outputs" data-kind="body" data-section="Joint RF Inference" aria-labelledby="outputs-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow challenge">CHALLENGE 1 — PAIR-CLASS EXPLOSION</p>
+<h2 id="outputs-heading">A class for every pair will not scale</h2></header><div class="slide-body"><div class="scene" data-challenge="compositional" aria-label="Separate action and candidate-index outputs can compose familiar constituents"></div></div>
+</section>
+<section class="slide body-slide" id="data-cost" data-kind="body" data-section="Data Synthesis" aria-labelledby="data-cost-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow challenge">CHALLENGE 2 — REAL-WORLD COVERAGE</p>
+<h2 id="data-cost-heading">Real-world coverage can reach millions</h2></header><div class="slide-body"><div class="scene" data-synthesis="coverage" aria-label="An illustrative deployment design space multiplies rooms, users, geometry and interactions into millions of recordings"></div></div>
+</section>
+<section class="slide body-slide" id="simulator" data-kind="body" data-section="Data Synthesis" aria-labelledby="simulator-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow design">DESIGN — PHYSICS-INSPIRED SYNTHESIS</p>
+<h2 id="simulator-heading">One motion mesh can generate paired RF</h2></header><div class="slide-body"><div class="scene" data-synthesis="shared-motion" aria-label="The same annotated HOI mesh and geometry drive physically consistent radar and RFID generation"></div></div>
+<div class="slide-conclusion"><p class="takeaway"><span class="takeaway-label">TAKEAWAY</span><span class="takeaway-text"><strong>One physical motion</strong> keeps both synthetic modalities consistent.</span></p>
+</div>
+</section>
+<section class="slide body-slide" id="ray-tracing" data-kind="body" data-section="Data Synthesis" aria-labelledby="ray-tracing-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow design">RADAR SYNTHESIS — RAY TRACING</p>
+<h2 id="ray-tracing-heading">Trace reflections from the moving body</h2></header><div class="slide-body"><div class="scene" data-synthesis="raytracing" aria-label="Rays reflect from moving human mesh surfaces, combine at the receiver and produce radar feature maps"></div></div>
+</section>
+<section class="slide body-slide" id="rfid-physics" data-kind="body" data-section="Data Synthesis" aria-labelledby="rfid-physics-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow challenge">RFID SYNTHESIS — A DIFFERENT PHYSICAL MODEL</p>
+<h2 id="rfid-physics-heading">RFID needs a different physical model</h2></header><div class="slide-body"><div class="scene" data-synthesis="rfid-physics" aria-label="Missing object geometry and lower-frequency approximations motivate hand-motion phase synthesis"></div></div>
+</section>
+<section class="slide body-slide" id="hand-proxy" data-kind="body" data-section="Data Synthesis" aria-labelledby="hand-proxy-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow design">APPROXIMATION — HAND MOTION AS A PROXY</p>
+<h2 id="hand-proxy-heading">The hand can approximate target motion</h2></header><div class="slide-body"><div class="proxy-layout"><div class="scene" data-mechanism="hand-proxy" aria-label="The interacting hand supplies a proxy trajectory for a moved object"></div><div class="scene proxy-evidence" data-figure="hand-object" aria-label="Redrawn hand and object y coordinates from TRUMANS Fig.9b"></div></div></div>
+</section>
+<section class="slide body-slide" id="adaptation" data-kind="body" data-section="Training" aria-labelledby="adaptation-heading">
+<header class="slide-heading">
+<p class="slide-eyebrow challenge">CHALLENGE — THE SIM-TO-REAL GAP</p>
+<h2 id="adaptation-heading">Synthetic coverage still needs real adaptation</h2></header><div class="slide-body"><div class="scene" data-narrative="adaptation" aria-label="One recognition model first learns synthetic RF data and then adapts to real RF recordings"></div></div>
+<div class="slide-conclusion"><p class="takeaway"><span class="takeaway-label">TAKEAWAY</span><span class="takeaway-text"><strong>Simulate for coverage</strong>; fine-tune on real RF.</span></p>
+</div>
+</section>
+<section class="slide body-slide" id="prototype" data-kind="body" data-section="Prototype" aria-labelledby="prototype-heading">
+<header class="slide-heading">
+<h2 id="prototype-heading">Objects carry tags; users wear nothing</h2></header><div class="slide-body"><div class="prototype-layout"><img class="prototype-photo" src="assets/fig11a-hardware.png" alt="The commercial radar and RFID collection platform"><div class="hardware-labels"><div><h3>mmWave radar</h3><p>TI AWR1843AOP</p></div><div><h3>RFID reader and antennas</h3><p>Impinj R420, four antennas</p></div><div><h3 class="mint">RF-only inference</h3><p>The camera supplies reference video and the vision baseline.</p></div></div></div></div>
+</section>
+<section class="slide body-slide" id="evaluation" data-kind="body" data-section="Evaluation" aria-labelledby="evaluation-heading">
+<header class="slide-heading">
+<h2 id="evaluation-heading">Both action and target must be correct</h2></header><div class="slide-body"><div class="scene" data-narrative="evaluation" aria-label="Random real samples are held out for joint action and target evaluation"></div></div>
+<p class="slide-note standalone-note">3,615 real samples; 78 setups, 17 HOI categories, 5 users, 3 environments.</p>
+</section>
+<section class="slide body-slide" id="fusion-results" data-kind="body" data-section="Evaluation" aria-labelledby="fusion-results-heading">
+<header class="slide-heading">
+<h2 id="fusion-results-heading">Fusion improves joint accuracy by 19.87 pp</h2></header><div class="slide-body"><div class="scene" data-evidence="fusion" aria-label="Matched no-fusion and RF-HOI joint accuracies, with their directly annotated difference"></div></div>
+<p class="slide-note standalone-note">Matched training budgets; full real training partition, random sample split.</p>
+</section>
+<section class="slide body-slide" id="synthetic" data-kind="body" data-section="Evaluation" aria-labelledby="synthetic-heading">
+<header class="slide-heading">
+<h2 id="synthetic-heading">Synthetic data helps when real data are scarce</h2></header><div class="slide-body"><div class="scene" data-evidence="scarce" aria-label="The same real-data budget gains 30.74 percentage points from synthetic pre-training"></div></div>
+<p class="slide-note standalone-note">17% of the 30% real training partition, approximately 5% of the main dataset.</p>
+</section>
+<section class="slide body-slide" id="real-pairs" data-kind="body" data-section="Generalization" aria-labelledby="real-pairs-heading">
+<header class="slide-heading">
+<h2 id="real-pairs-heading">Known labels can form a new real HOI pair</h2></header><div class="slide-body"><div class="scene" data-narrative="real-pairs" aria-label="Known action and object constituents form a pair held out from real fine-tuning"></div></div>
+<div class="slide-conclusion"><p class="takeaway"><span class="takeaway-label">TAKEAWAY</span><span class="takeaway-text"><strong>New real pairings</strong> can reuse familiar actions and objects.</span></p>
+<p class="slide-note">81.25% joint accuracy; five pairs withheld from real training, covered in synthesis.</p>
+</div>
+</section>
+<section class="slide body-slide" id="expansion" data-kind="body" data-section="Generalization" aria-labelledby="expansion-heading">
+<header class="slide-heading">
+<h2 id="expansion-heading">New names can reuse familiar motion</h2></header><div class="slide-body"><div class="scene" data-mechanism="expansion" aria-label="The same compatible motion is paired with an expanded object name"></div></div>
+</section>
+<section class="slide body-slide" id="new-objects" data-kind="body" data-section="Generalization" aria-labelledby="new-objects-heading">
+<header class="slide-heading">
+<h2 id="new-objects-heading">New-object gains bring a seen-object tradeoff</h2></header><div class="slide-body"><div class="scene" data-evidence="objects" aria-label="Matched original and expanded synthesis compared on both new and seen objects"></div></div>
+<p class="slide-note standalone-note">5 new objects, 2 actions, 145 tests; the same real fine-tuning uses only the original objects.</p>
+</section>
+<section class="slide body-slide" id="occlusion" data-kind="body" data-section="Robustness" aria-labelledby="occlusion-heading">
+<header class="slide-heading">
+<h2 id="occlusion-heading">Tested occlusions retain over 90% accuracy</h2></header><div class="slide-body"><div class="scene" data-narrative="occlusion" aria-label="Separate hand and body occlusion conditions keep the interacting body visible to radar"></div></div>
+<p class="slide-note standalone-note">One user; body-occluded non-target objects 20–50 cm behind the user.</p>
+</section>
+<section class="slide body-slide" id="processing" data-kind="body" data-section="Processing" aria-labelledby="processing-heading">
+<header class="slide-heading">
+<h2 id="processing-heading">Processing keeps pace with incoming frames</h2></header><div class="slide-body"><div class="scene" data-narrative="preprocess" aria-label="After each full radar frame arrives, preprocessing completes within the next capture interval"></div></div>
+<p class="slide-note standalone-note">Radar preprocessing: 22.83–36.52 ms/frame on tested GPUs; capture: 100 ms/frame.</p>
+</section>
+<section class="slide body-slide" id="goals" data-kind="body" data-section="Application" aria-labelledby="goals-heading">
+<header class="slide-heading">
+<h2 id="goals-heading">Object context improves inferred goals</h2></header><div class="slide-body"><div class="scene" data-evidence="goals" aria-label="Actions, objects and full HOI context compared in the paper’s goal-inference case study"></div></div>
+<div class="slide-conclusion"><p class="takeaway"><span class="takeaway-label">TAKEAWAY</span><span class="takeaway-text">In this case study, <strong>joint labels improve goal inference</strong>.</span></p>
+<p class="slide-note">Gemini 2.5 Flash; 22 sequences, 30 goals, 8 examples; one volunteer.</p>
+</div>
+</section>
+<section class="slide closing-slide" id="takeaways" data-kind="closing" data-section="RF-HOI" aria-labelledby="takeaways-heading">
+<div class="closing-layout"><p class="closing-kicker">TAKEAWAYS</p><h2 id="takeaways-heading">RF can recognize<br><span>actions and their targets.</span></h2><div class="closing-metrics"><article><h3>Share RF evidence</h3><strong>96.97<span>%</span></strong><p>Joint HOI accuracy<br>Main random sample split</p></article><article><h3>Learn from synthesis</h3><strong>+30.74<span>pp</span></strong><p>Gain at 17% of the<br>real training partition</p></article><article><h3>Expand object coverage</h3><strong>93.1<span>%</span></strong><p>New-object accuracy<br>Five objects, two actions</p></article></div><div class="closing-marks"><img src="assets/branding/jhu-official-horizontal-white.svg" alt="Johns Hopkins University"><img src="assets/branding/hopwins-horizontal-dark.png" alt="HopWINS Lab"></div></div>
+</section>
+<div id="overview" hidden aria-label="Slide overview"></div><footer class="deck-footer"><span>RF-HOI — IMWUT 2026</span><span id="slide-position" aria-live="polite">01 / 28</span></footer></main><nav class="toolbar" aria-label="Presentation controls"><button id="previous" aria-label="Previous slide" title="Previous: Left arrow">←</button><button id="next" aria-label="Next slide" title="Next: Right arrow or Space">→</button><button id="show-overview" aria-label="Show overview" title="Overview: O">☷</button><button id="pause" aria-label="Pause animations" title="Pause: P">Ⅱ</button><button id="fullscreen" aria-label="Toggle full screen" title="Fullscreen: F">⛶</button></nav>
+<script src="vendor/katex/katex.min.js?v=c58fdc51cf7c"></script>
+<script src="model.js?v=c58fdc51cf7c"></script>
+<script src="scenes.js?v=c58fdc51cf7c"></script>
+<script src="applications.js?v=c58fdc51cf7c"></script>
+<script src="story-scenes.js?v=c58fdc51cf7c"></script>
+<script src="mechanisms.js?v=c58fdc51cf7c"></script>
+<script src="narrative-scenes.js?v=c58fdc51cf7c"></script>
+<script src="evidence.js?v=c58fdc51cf7c"></script>
+<script src="research-figures.js?v=c58fdc51cf7c"></script>
+<script src="challenge-scenes.js?v=c58fdc51cf7c"></script>
+<script src="synthesis-scenes.js?v=c58fdc51cf7c"></script>
+<script src="slides.js?v=c58fdc51cf7c"></script>
+</body></html>
