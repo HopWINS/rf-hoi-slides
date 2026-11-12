@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "verified_date": "2026-11-01",
+  "background": "#002D72",
+  "selection_basis": "Current workspace asset registry, source provenance, matching SHA-256, visual inspection on Heritage Blue. Earlier draft imagery is superseded.",
+  "assets": [
+    {
+      "file": "hopwins-horizontal-dark.png",
+      "label": "HopWINS horizontal dark v55",
+      "master": "output/branding/horizontal/dark-v55/hopwins-horizontal-white-blue-transparent-6000.png",
+      "version": 55,
+      "status": "final; user approved 2026-11-01",
+      "sha256": "1a81ab71fb06b559e9f1e98d2bce21bd7c37da39805593c310d50a442df1a470",
+      "copy_sha256_matches_master": true,
+      "canvas": [
+        6000,
+        1125
+      ],
+      "visible_ink_bbox": [
+        240,
+        93,
+        5660,
+        971
+      ],
+      "bbox_method": "Alpha > 8; PNG native pixels, SVG measured from native-scale QA raster then expressed in viewBox units. Horizontal JHU is effectively full viewBox.",
+      "transparent": true,
+      "palette": "Reversed/light ink for #002D72 stage",
+      "preserve_aspect_ratio": true,
+      "registry": "output/branding/brand-assets.json"
+    },
+    {
+      "file": "hopwins-large-dark.svg",
+      "label": "HopWINS large dark v56",
+      "master": "output/branding/vector/revisions/v56-dark/HopWINS-Audiowide-v56-dark-transparent.svg",
+      "version": 56,
+      "status": "available; requested 2026-11-01; exact geometry of user-approved v54 large layout",
+      "sha256": "0b900a8c69b18e4a85dc8ede8574c33623958c3871150e0c79ae741a82656cc4",
+      "copy_sha256_matches_master": true,
+      "canvas": [
+        1254,
+        1254
+      ],
+      "visible_ink_bbox": [
+        91,
+        185,
+        1168,
+        1089
+      ],
+      "bbox_method": "Alpha > 8; PNG native pixels, SVG measured from native-scale QA raster then expressed in viewBox units. Horizontal JHU is effectively full viewBox.",
+      "transparent": true,
+      "palette": "Reversed/light ink for #002D72 stage",
+      "preserve_aspect_ratio": true,
+      "registry": "output/branding/brand-assets.json"
+    },
+    {
+      "file": "jhu-official-horizontal-white.svg",
+      "label": "JHU original official horizontal reversed",
+      "master": "3in1-slides/assets/branding/jhu-official-horizontal-white.svg",
+      "version": null,
+      "status": "unmodified official artwork; provenance records official brand header DOM 2026-11-01",
+      "sha256": "301650c0feee7b725bcad6a2c244796457c978571160fcff1bc4dabef23914a7",
+      "copy_sha256_matches_master": true,
+      "canvas": [
+        260.7,
+        49.663
+      ],
+      "visible_ink_bbox": [
+        0,
+        0,
+        260.7,
+        49.663
+      ],
+      "bbox_method": "Alpha > 8; PNG native pixels, SVG measured from native-scale QA raster then expressed in viewBox units. Horizontal JHU is effectively full viewBox.",
+      "transparent": true,
+      "palette": "Reversed/light ink for #002D72 stage",
+      "preserve_aspect_ratio": true,
+      "official_source": "https://brand.jhu.edu/resources/download-library/",
+      "source_page": "https://brand.jhu.edu/visual-identity/primary-logo/",
+      "provenance_record": "3in1-slides/assets/branding/provenance.json",
+      "live_text_count": 0,
+      "embedded_images": 0
+    },
+    {
+      "file": "jhu-official-stacked-white.svg",
+      "label": "JHU original official stacked reversed",
+      "master": "3in1-slides/assets/branding/jhu-official-stacked-white.svg",
+      "version": null,
+      "status": "unmodified official artwork; provenance records university website SVG 2026-11-01",
+      "sha256": "dff7672822dcf598595d3a3ccdb128c959b0fbe65bc42e48d25971576990d4c3",
+      "copy_sha256_matches_master": true,
+      "canvas": [
+        266,
+        171
+      ],
+      "visible_ink_bbox": [
+        43,
+        43,
+        223,
+        129
+      ],
+      "bbox_method": "Alpha > 8; PNG native pixels, SVG measured from native-scale QA raster then expressed in viewBox units. Horizontal JHU is effectively full viewBox.",
+      "transparent": true,
+      "palette": "Reversed/light ink for #002D72 stage",
+      "preserve_aspect_ratio": true,
+      "official_source": "https://www.jhu.edu/assets/themes/machado/src/assets/images/logos/university-logo-small-vertical-white.svg",
+      "source_page": "https://www.jhu.edu/",
+      "provenance_record": "3in1-slides/assets/branding/provenance.json",
+      "live_text_count": 0,
+      "embedded_images": 0
+    }
+  ],
+  "optical_layout_guidance": {
+    "body_header": {
+      "jhu_horizontal_css_width_px": 305,
+      "hopwins_horizontal_css_width_px": 375,
+      "gap_px": 32,
+      "alignment": "center; HopWINS translateY(2px) compensates its transparent top/bottom margin imbalance",
+      "expected_visible_heights_px": {
+        "jhu": 58.1,
+        "hopwins": 54.9
+      },
+      "note": "Evaluate visible shield and wordmark ink, not equal file heights. Keep right section label secondary."
+    },
+    "cover": {
+      "jhu_stacked_css_width_px": 310,
+      "hopwins_large_css_width_px": 148,
+      "gap_px": 30,
+      "alignment": "center; preserve both source aspect ratios and official clear space",
+      "expected_visible_heights_px": {
+        "jhu": 100.2,
+        "hopwins": 106.7
+      },
+      "expected_image_canvas_heights_px": {
+        "jhu": 199.3,
+        "hopwins": 148
+      },
+      "order": "Authors, supplied Johns Hopkins University affiliation, then marks. No inferred department.",
+      "note": "Rendered cover sizes. Both originals retain their aspect ratios and official clear space; actual visible ink heights are balanced."
+    }
+  },
+  "excluded": {
+    "file": "3in1-slides/assets/branding/jhu-shield-emphasis-white.svg",
+    "reason": "User-requested custom composition for earlier presentation; not an original official institutional lockup. Not copied."
+  },
+  "qa_record": "tmp/rfhoi-latest/branding-integrity.json"
+}
